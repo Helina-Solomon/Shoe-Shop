@@ -6,7 +6,9 @@ import SignUp from './Pages/SignUp';
 import Profile from './Pages/Profile';
 import About from './Pages/About';
 import Products from './Pages/Products';
+import Cart from './Pages/Cart';
 import Header from './Components/Header';
+import PrivateRoute from './Components/PrivateRoute';
 const App = () => {
   return (
     <BrowserRouter>
@@ -17,7 +19,15 @@ const App = () => {
       <Route path='/about' element={<About />}/>
       <Route path='/sign-in' element={<SignIn />}/>
       <Route path='/sign-up' element={<SignUp />}/>
-      <Route path='/profile' element={<Profile />}/>
+      <Route path='/cart' element={<Cart />}/>
+      <Route
+          path='/profile'
+          element={
+            <PrivateRoute>
+              <Profile />
+            </PrivateRoute>
+          }
+        />
       
       
     </Routes>
