@@ -23,9 +23,9 @@ const App = () => {
       <Route
           path='/profile'
           element={
-            <PrivateRoute>
+            
               <Profile />
-            </PrivateRoute>
+            
           }
         />
       
