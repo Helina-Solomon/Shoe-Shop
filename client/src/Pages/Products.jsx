@@ -1,4 +1,5 @@
 //import React from 'react'
+import { Link, useNavigate } from 'react-router-dom'
 import shoe1 from '../assets/adidas sport.jpg'
 import shoe2 from '../assets/adidassuper.jpg'
 import shoe3 from '../assets/blacksne.jpg'
@@ -51,17 +52,22 @@ const Products = () => {
     {id: 17, name: 'Gucci Loafers', price: 5000, image: shoe17},
     {id: 18, name: 'Prada Loafers', price: 5500, image: shoe18},
     {id: 19, name: 'Classy Mules', price: 5500, image: shoe19},
-    {id: 21, name: 'Oxford Shoes', price: 3500, image: shoe21},
-    {id: 22, name: 'Classy Oxford', price: 4000, image: shoe22},
-    {id: 23, name: 'Oxford color Black', price: 4000, image: shoe23},
-    {id: 24, name: 'Reebok Sneaker', price: 3000, image: shoe24},
+    {id: 21, name: 'Derby Shoes', price: 3500, image: shoe21},
+    {id: 22, name: 'Handmade Derby Shoes', price: 4000, image: shoe22},
+    {id: 23, name: 'Oxford Shoes', price: 4000, image: shoe23},
+    {id: 24, name: 'Reebok Sneaker', price: 2500, image: shoe24},
     {id: 25, name: 'Ladies Sandals', price: 1500, image: shoe25},
     {id: 26, name: 'Nike Sport Shoes', price: 2000, image: shoe26},
-    {id: 27, name: 'Merrell Sport Shoes', price: 1500, image: shoe27},
+    {id: 27, name: 'Merrell Sport Shoes', price: 2000, image: shoe27},
     {id: 28, name: 'Adidas Sport Shoes', price: 2000, image: shoe28},
     {id: 29, name: 'Timberland boots', price: 4500, image: shoe29}
   ]
 
+  const navigate = useNavigate()
+
+  const goToProductDetails = (product) => {
+    navigate(`/product/${product.id}`, { state: { product } });
+  }
 
   return (
     <div className="container mx-auto p-4 ">
@@ -69,11 +75,14 @@ const Products = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 ">
         {products.map((product) => (
           <div key={product.id} className="border p-4 rounded-lg shadow-lg bg-slate-300">
-            <img src={product.image} alt={product.name} className="w-full h-48 object-cover mb-4" />
-            <h2 className="text-xl font-semibold">{product.name}</h2>
-            <p className="text-lg">ETB {product.price}</p>
+            <Link to={`/products/${product.id}`}>
+              <img src={product.image} alt={product.name} className="w-full h-48 object-cover mb-4" />
+              <h2 className="text-xl font-semibold">{product.name}</h2>
+              <p className="text-lg">ETB {product.price}</p>
+            </Link>
             <button
               className="bg-slate-700 text-white rounded-lg py-2 px-4 mt-4 hover:opacity-95"
+              onClick={() => goToProductDetails(product)}
             >
               Add to Cart
             </button>
